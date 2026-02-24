@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonzaza | The Ultimate Edge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           🎨 DESIGN SYSTEM (Color Palette)
+           ใช้ #1C0770 เป็นสีหลัก ตัดกับสีฟ้าสว่างเพื่อเพิ่มยอดคลิก (CTA)
+           ========================================= */
+        :root {
+            --bg-main: #0B0228;        /* สีพื้นหลังโทนเข้มลึกสุด เพื่อดันให้สีหลักโดดเด่น */
+            --bg-card: #1C0770;        /* สี Brand Palette ของคุณ สำหรับการ์ดและพื้นที่สำคัญ */
+            --accent: #00E5FF;         /* สี Neon Cyan สำหรับปุ่ม CTA กระตุ้นให้เกิดการคลิก */
+            --accent-hover: #00B8CC;   /* สีปุ่ม CTA เมื่อเอาเมาส์ชี้ */
+            --text-main: #FFFFFF;      /* สีตัวหนังสือหลัก */
+            --text-muted: #A59DD1;     /* สีตัวหนังสือรอง (ม่วงอ่อนสบายตา) */
+        }
+
+        /* =========================================
+           BASE STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =========================================
+           BUTTONS (CTA)
+           ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 36px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0B0228; /* ตัวหนังสือสีเข้มบนปุ่มสีสว่างให้อ่านง่าย */
+            box-shadow: 0 8px 24px rgba(0, 229, 255, 0.25);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* =========================================
+           NAVIGATION
+           ========================================= */
+        header {
+            padding: 24px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 2, 40, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        /* Ambient Glow Effect ซ่อนอยู่หลัง Hero */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--bg-card) 0%, transparent 70%);
+            opacity: 0.5;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 64px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: rgba(28, 7, 112, 0.5);
+            border: 1px solid var(--bg-card);
+            color: var(--accent);
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            max-width: 520px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-visual {
+            flex: 1;
+            height: 550px;
+            background: linear-gradient(135deg, var(--bg-card), #12034d);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =========================================
+           BENEFITS SECTION
+           ========================================= */
+        .benefits {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .card {
+            background-color: rgba(28, 7, 112, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 48px 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background-color: var(--bg-card);
+            border-color: rgba(0, 229, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            background-color: rgba(0, 229, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 32px;
+            color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* =========================================
+           BOTTOM CTA & FOOTER
+           ========================================= */
+        .bottom-cta {
+            padding: 140px 0;
+            text-align: center;
+            background: linear-gradient(180deg, transparent, var(--bg-card));
+            position: relative;
+        }
+
+        .bottom-cta h2 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            background-color: var(--bg-card);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* =========================================
+           RESPONSIVE (MOBILE)
+           ========================================= */
+        @media (max-width: 992px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero p {
+                margin: 0 auto 48px;
+            }
+            .hero-visual {
+                width: 100%;
+                height: 400px;
+            }
+            .hero h1 { font-size: 3.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.75rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons .btn { width: 100%; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .bottom-cta h2 { font-size: 2.5rem; }
+            .section-header h2 { font-size: 2.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Son<span>zaza</span></div>
+            <a href="#cta" class="btn btn-primary" style="padding: 10px 24px; font-size: 0.875rem;">Get Started</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="eyebrow">✨ The Ultimate Edge</span>
+                <h1>Dominate Your<br>Digital Space.</h1>
+                <p>Sonzaza delivers the robust tools you need to streamline, scale, and succeed. Built exclusively for modern visionaries who refuse to compromise.</p>
+                <div class="hero-buttons">
+                    <a href="#cta" class="btn btn-primary">Start Building Now</a>
+                    <a href="#benefits" class="btn btn-outline">Explore Platform</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <p>— Insert App UI or Dashboard Mockup Here —</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Sonzaza?</h2>
+                <p>We stripped away the noise to bring you pure, unadulterated performance.</p>
+            </div>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon-wrapper">🚀</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Engineered for speed. Experience zero latency and fluid interactions that keep your workflow unbroken.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-wrapper">💎</div>
+                    <h3>Sleek & Minimal</h3>
+                    <p>A beautifully intuitive interface that requires zero learning curve. Get straight to what matters most.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-wrapper">🛡️</div>
+                    <h3>Unmatched Power</h3>
+                    <p>Underneath the minimalist hood lies a robust engine ready to scale securely with your boldest ideas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="bottom-cta">
+        <div class="container">
+            <h2>Ready to transform?</h2>
+            <p style="color: var(--text-muted); font-size: 1.25rem; margin-bottom: 48px; max-width: 600px; margin-inline: auto;">
+                Join the innovators who are already scaling with Sonzaza. Create your account in seconds.
+            </p>
+            <a href="#" class="btn btn-primary" style="padding: 20px 56px; font-size: 1.125rem;">Unlock Early Access</a>
